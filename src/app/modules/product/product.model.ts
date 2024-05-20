@@ -24,4 +24,4 @@ const productSchema = new Schema<TProduct>({
   });
   
   // 3. Create a Product Model.
-export  const Product = model<TProduct>('User', productSchema)
+export  const Product = model<TProduct>('Product', productSchema)
