@@ -8,9 +8,12 @@ async function main() {
         app.listen(config.port, () => {
         console.log(`Server is running  listening on port ${config.port}`)
         })
-  } catch (err: string | any) {
-    throw new Error(err);
-    
+  } catch (err:unknown) {
+      if (err instanceof Error) {
+        throw new Error(err.message);
+    } else {
+        throw new Error('Unknown error');
+    }
   }
 }
 main()
