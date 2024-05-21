@@ -1,4 +1,4 @@
-import express, { Application, Errback, NextFunction, Request, Response } from 'express'
+import express, { Application, NextFunction, Request, Response } from 'express'
 import cors from 'cors'
 import { productRouter } from './app/modules/product/product.route'
 import { OrderRoute } from './app/modules/order/order.route'
@@ -28,7 +28,7 @@ app.get('/', (req:Request, res:Response) => {
 })
 
 // handle route not found middleware
-app.use((req:Request, res:Response, next:NextFunction) => {
+app.use((req:Request, res:Response) => {
   res.status(404).json({
     success: false,
     message: 'Route not found'

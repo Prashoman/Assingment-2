@@ -68,7 +68,7 @@ const getAllProduct = async (req:Request,res:Response)=>{
         
     } catch (error) {
         return res.status(500).json({
-            message:"Internal Server Error",
+            message:"Product not found Server Error",
             success:false,
             error:error
         });
@@ -93,7 +93,11 @@ const getProductById = async (req:Request,res:Response)=>{
         });
         
     } catch (error) {
-        
+        return res.status(500).json({
+            message:"Product not found.Internal Server Error",
+            success:false,
+            error:error
+        });
     }
 }
 
@@ -129,7 +133,7 @@ const updateProduct = async (req: Request, res: Response) => {
         });
     } catch (error) {
         return res.status(500).json({
-            message: "Internal Server Error",
+            message: "Product not found.Internal Server Error",
             success: false,
             error: error,
         });
@@ -164,21 +168,11 @@ const deleteProduct = async (req:Request,res:Response)=>{
         
     } catch (error) {
         return res.status(500).json({
-            message:"Internal Server Error",
+            message:"Product not found.Internal Server Error",
             success:false,
             error:error
         });
     }
-}
-
-const searchProduct = async (req:Request,res:Response)=>{
-
-    const {searchTerm} = req.query;
-    console.log(searchTerm);
-    return res.status(200).json({
-        searchProduct:searchTerm
-    })
-    
 }
 
 export const ProductController ={
@@ -187,5 +181,4 @@ export const ProductController ={
     getProductById,
     updateProduct,
     deleteProduct,
-    searchProduct
 }
