@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { TProduct } from './product.interface';
+
 
 const variantValidationSchema = z.object({
     type: z.string({
@@ -10,6 +10,7 @@ const variantValidationSchema = z.object({
     }),
   });
 
+  // using the Zod validation schema in the Product 
 export const productValidationSchema = z.object({
     name: z.string({
       required_error: "Name is required.",
@@ -38,7 +39,7 @@ export const productValidationSchema = z.object({
     inventory: z.object({
       quantity: z.number({
         required_error: "Quantity is required.",
-      }).int("Quantity must be an Positive Number.").nonnegative("Quantity cannot be negative."),
+      }).positive("Quantity must be greater than zero.").nonnegative("Quantity cannot be negative."),
 
       inStock: z.boolean({
         required_error: "InStock status is required.",
