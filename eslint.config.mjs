@@ -19,10 +19,10 @@ export default tseslint.config(
         "prefer-const": "error",
         "no-console": "warn",
     },
-    ignores: [
-        "!node_modules/",           // unignore `node_modules/` directory
-        "node_modules/*",           // ignore its content
-        "./dist/*"  // unignore `node_modules/mylibrary` directory
+    },
+    {
+      ignores: [
+        "!node_modules/","node_modules/*", "**/dist/", "**/.env"  
     ]
-}
+    }
 );
