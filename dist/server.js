@@ -24,7 +24,12 @@ function main() {
             });
         }
         catch (err) {
-            throw new Error(err);
+            if (err instanceof Error) {
+                throw new Error(err.message);
+            }
+            else {
+                throw new Error('Unknown error');
+            }
         }
     });
 }
