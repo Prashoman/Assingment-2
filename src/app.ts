@@ -6,6 +6,8 @@ const app:Application = express()
 
 app.use(cors())
 app.use(express.json())
+
+// handle syntax error in json middleware
 app.use((err:SyntaxError | any, req:Request, res:Response, next:NextFunction) => {
   if (err instanceof SyntaxError && 'body' in err) {
     return res.status(400).json({ error: 'Invalid JSON' });
@@ -13,12 +15,24 @@ app.use((err:SyntaxError | any, req:Request, res:Response, next:NextFunction) =>
   next();
 });
 
+// product Router here
 app.use('/api/', productRouter);
 // order route here
 app.use('/api/', OrderRoute);
 
 app.get('/', (req:Request, res:Response) => {
-  res.send('Hello World!')
+  res.status(200).json({ 
+    success: true,
+    message: 'Assingnment 2 Node Js API'
+    })
 })
+
+// handle route not found middleware
+app.use((req:Request, res:Response, next:NextFunction) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found'
+  });
+});
 
 export default app
